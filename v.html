@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pappuuuuu</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom, #fff0f5, #ffe4e1);
+            position: relative;
+        }
+
+        h1 {
+            margin-top: 120px;
+            font-size: 42px;
+            color: #b30059;
+            position: relative;
+            z-index: 2;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            transition: transform 0.2s;
+            position: relative;
+            z-index: 2;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #cccccc;
+            position: absolute;
+        }
+
+        /* Floating hearts */
+        .floating-heart {
+            position: absolute;
+            color: #ff6b81;
+            font-size: 20px;
+            animation: floatUp linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+
+        /* Static sprinkled hearts */
+        .background-heart {
+            position: absolute;
+            color: #ffb6c1;
+            font-size: 18px;
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>Hey Ganesh!! Will you be my Valentine? ❤️</h1>
+<h3> Try saying no to me </h3>
+
+<button id="yesBtn" onclick="yesClicked()">Yes</button>
+<button id="noBtn">No</button>
+
+<script>
+
+// YES CLICK
+function yesClicked() {
+    document.body.innerHTML = 
+        "<h1 style='margin-top:200px;color:#b30059;'>Good choice. I love doing life with you. ❤️</h1>";
+}
+
+// MAKE NO BUTTON RUN AWAY
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", function() {
+    var button = document.getElementById("noBtn");
+    var x = Math.random() * (window.innerWidth - 100);
+    var y = Math.random() * (window.innerHeight - 50);
+    button.style.left = x + "px";
+    button.style.top = y + "px";
+});
+
+
+// FLOATING HEARTS
+function createFloatingHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("floating-heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 7000);
+}
+
+setInterval(createFloatingHeart, 500);
+
+
+// STATIC SPRINKLED HEARTS
+for (let i = 0; i < 40; i++) {
+    const heart = document.createElement("div");
+    heart.classList.add("background-heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = Math.random() * window.innerHeight + "px";
+    heart.style.fontSize = (12 + Math.random() * 20) + "px";
+    document.body.appendChild(heart);
+}
+
+</script>
+
+</body>
+</html>
